@@ -8,3 +8,7 @@ Route::get('/',function(){
 Route::get('/about',function(){
 	return view ('about');
 });
+
+Route::get('/data', 'SiswaController@create');
+
+Route::post('/data', 'SiswaController@store');
