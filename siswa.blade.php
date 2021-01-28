@@ -23,9 +23,12 @@
 					<td class="text-center">{{ $p-> nama}}</td>
 					<td class="text-center">{{ $p-> absen}}</td>
 					<td class="text-center">
-						<a href="" class="btn btn-info">Edit</a>
-						<a href="" class="btn btn-danger">Hapus</a>
-					</td>
+						<a href="{{ route('editData', $p->id)}}" class="btn btn-info">Edit</a>
+						<form method="post" action="{{ route('siswa.hapus', $p->id) }}" class="d-inline">
+						@csrf
+						@method('DELETE')
+						<button class="btn btn-danger" type="submit"> Delete</button>
+						</form>
 				</tr>
 				@endforeach
 			</tbody>
