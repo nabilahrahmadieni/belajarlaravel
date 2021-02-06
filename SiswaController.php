@@ -38,10 +38,16 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
+
+        $pesan= [
+            'required' => 'field tidak boleh kosong',
+            'min'=> 'Masukkan setidaknya 3 karakter',
+            'max'=> 'Maksimal 25 karakter'
+        ];
         $this->validate($request, [
-            'nama' => 'required',
+            'nama' => 'required|min:3|max:25',
             'absen' => 'required'
-        ]);
+        ],$pesan);
 
         Siswa::create([
             'nama' => $request->nama,
@@ -85,10 +91,16 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
         
+        $pesan= [
+            'required' => 'field tidak boleh kosong',
+            'min'=> 'Masukkan setidaknya 3 karakter',
+            'max'=> 'Maksimal 25 karakter'
+        ];
+
         $this->validate($request, [
             'nama' => 'required',
             'absen' => 'required'
-        ]);
+        ],$pesan);
 
         $input = $request->all();
         $siswa = Siswa::findOrFail($id);
